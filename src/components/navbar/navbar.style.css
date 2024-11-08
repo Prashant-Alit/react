@@ -1,0 +1,16 @@
+.navbar-container{
+    display: flex;
+    justify-content: space-around;
+}
+
+.navitem-container{
+    width: 400px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.navitems{
+    list-style: none;
+    text-decoration: none;
+    cursor: pointer;
+}
