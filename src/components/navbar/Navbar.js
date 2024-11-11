@@ -1,47 +1,68 @@
-// import { Link} from "react-router-dom";
-
-// import "./navbar.style.css"
-
-// export const Navbar = () => {
-//     return (
-//         <div className="navbar-container">
-//             {/* <div><h1>logo</h1></div> */}
-//             <div>
-//                <ul className="navitem-container">
-//                 <Link to="/" className="navitems"> Home </Link>
-//                 <Link to='/about' className="navitems">About</Link>
-//                 <Link to="/contact" className="navitems">Contact</Link>
-//                 <Link to="/dashboard" className="navitems">Dashboard</Link>
-//                </ul>
-//             </div>
-//         </div>
-//     )
-// }
-
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "./navbar.style.css";
+import {
+  AppBar,
+  Toolbar,
+  Button,
+  Box,
+  IconButton,
+  Menu,
+  MenuItem,
+  useMediaQuery,
+  useTheme
+} from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
 
 export const Navbar = () => {
-  return (
-    <div className="navbar-container">
-      {/* Logo (optional) */}
-      {/* <div><h1>logo</h1></div> */}
-      
-      <div>
-        <ul className="navitem-container">
-          <li><Link to="/" className="navitems">Home</Link></li>
-          <li><Link to='/about' className="navitems">About</Link></li>
-          <li><Link to="/contact" className="navitems">Contact</Link></li>
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  const [anchorEl, setAnchorEl] = useState(null);
 
-          <li className="dropdown">
-            <Link to="/dashboard" className="navitems">Dashboard</Link>
-            <ul className="dropdown-menu">
-              <li><Link to="/dashboard/profile" className="navitems">Profile</Link></li>
-              {/* <li><Link to="/dashboard/settings" className="navitems">Settings</Link></li> */}
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </div>
+  const handleMenuClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
+  return (
+    <AppBar position="static">
+      <Toolbar>
+        {isMobile ? (
+          <>
+            <IconButton edge="start" color="inherit" onClick={handleMenuClick}>
+              <MenuIcon />
+            </IconButton>
+            <Menu
+              anchorEl={anchorEl}
+              open={Boolean(anchorEl)}
+              onClose={handleMenuClose}
+            >
+              <MenuItem component={Link} to="/" onClick={handleMenuClose}>
+                Home
+              </MenuItem>
+              <MenuItem component={Link} to="/about" onClick={handleMenuClose}>
+                About
+              </MenuItem>
+              <MenuItem component={Link} to="/post" onClick={handleMenuClose}>
+                Post
+              </MenuItem>
+              <MenuItem component={Link} to="/contact" onClick={handleMenuClose}>
+                Contact
+              </MenuItem>
+            </Menu>
+          </>
+        ) : (
+          <Box display="flex" gap={2}>
+            <Button color="inherit" component={Link} to="/">Home</Button>
+            <Button color="inherit" component={Link} to="/about">About</Button>
+            <Button color="inherit" component={Link} to="/post">Post</Button>
+            <Button color="inherit" component={Link} to="/contact">Contact</Button>
+          </Box>
+        )}
+      </Toolbar>
+    </AppBar>
   );
 };
+
