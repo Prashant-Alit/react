@@ -1,18 +1,19 @@
-import { useState } from "react"
-
-import {Button} from "../../components/button/Button"
+import React from "react";
+import { Typography, Box } from "@mui/material";
+import { Outlet, Link } from "react-router-dom";
 
 export const About = () => {
-    const [value,setValue] = useState(0)
+  return (
+    <Box textAlign="center" p={4}>
+      <Typography variant="h4">About Us</Typography>
+      <Typography variant="body1" mt={2}>
+        Welcome to the About page.
+      </Typography>
+      <Box mt={2}>
+        <Link to="profile">Go to Profile</Link>
+      </Box>
+      <Outlet />
+    </Box>
+  );
+};
 
-    const handleClick = () => {
-        setValue(value+1)
-    }
-    return (
-        <div>
-            <h1>About Page</h1>
-             <div>{value}</div>
-            <Button title="increase" handleClick={handleClick}/>
-        </div>
-    )
-}
