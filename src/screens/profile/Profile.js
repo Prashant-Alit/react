@@ -1,7 +1,7 @@
 import React from "react";
 import { Typography, Box } from "@mui/material";
 
-import { Button } from "../../components/button/Button";
+import { CustomButton } from "../../components/button/Button";
 
 export const Profile = () => {
   return (
@@ -10,15 +10,15 @@ export const Profile = () => {
       <Typography variant="body1" mt={2}>
         This is the nested Profile page within the About section.
       </Typography>
-      <Button color="primary" size="large">
-        Primary Button
-      </Button>
+      <CustomButton color="primary" size="large">
+        Primary CustomButton
+      </CustomButton>
 
-      <Button color="secondary" outlined>
+      <CustomButton color="secondary" outlined>
         Outlined Secondary
-      </Button>
+      </CustomButton>
 
-      <Button>Default Button</Button>
+      <CustomButton>Default CustomButton</CustomButton>
     </Box>
   );
 };

@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import {
   AppBar,
   Toolbar,
@@ -17,6 +17,17 @@ export const Navbar = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const [anchorEl, setAnchorEl] = useState(null);
+  // const [user,setUser] = useState(false)
+
+  const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   const formdata = JSON.parse(localStorage.getItem('items'));
+  //   console.log(formdata)
+  //   if(formdata){
+  //     setUser(formdata)
+  //   }
+  // },[])
 
   const handleMenuClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -25,6 +36,12 @@ export const Navbar = () => {
   const handleMenuClose = () => {
     setAnchorEl(null);
   };
+
+  const handleLogout = () => {
+    localStorage.removeItem("items")
+    setTimeout(() => {},1000)
+     navigate("/")
+  }
 
   return (
     <AppBar position="static">
@@ -51,6 +68,9 @@ export const Navbar = () => {
               <MenuItem component={Link} to="/contact" onClick={handleMenuClose}>
                 Contact
               </MenuItem>
+             {/* {user ? <MenuItem component={Link} to="/contact" onClick={handleMenuClose}>
+                Logout
+              </MenuItem> :""} */}
             </Menu>
           </>
         ) : (
@@ -59,6 +79,7 @@ export const Navbar = () => {
             <Button color="inherit" component={Link} to="/about">About</Button>
             <Button color="inherit" component={Link} to="/post">Post</Button>
             <Button color="inherit" component={Link} to="/contact">Contact</Button>
+            {/* {user ? <Button color="inherit" onClick={handleLogout}>Logout</Button> : ""} */}
           </Box>
         )}
       </Toolbar>

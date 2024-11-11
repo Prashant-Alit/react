@@ -3,7 +3,7 @@ import {
     Route,
 } from "react-router-dom";
 
-import { Home,About,Contact,Post,Profile } from "../screens";
+import { Home,About,Contact,Profile } from "../screens";
 
 export const Routing = () => {
     return (
@@ -13,9 +13,7 @@ export const Routing = () => {
             <Route path="profile" element={<Profile/>}></Route>
             </Route>
             <Route path="/contact" element={<Contact/>}></Route>
-            <Route path="/post" element={<Post/>}>
-              
-            </Route>
+           
         </Routes>
     )
 }

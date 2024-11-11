@@ -1,9 +1,9 @@
 
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Container } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
-import {Button} from "../../components/button";
+import {CustomButton} from "../../components/button/Button";
 
 export const Contact = () => {
   const [formData, setFormData] = useState({
@@ -16,26 +16,26 @@ export const Contact = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+     setFormData({ ...formData, [name]: value });
   };
 
   const validateForm = () => {
-    const { name, email, message } = formData;
+    const { name, email } = formData;
     const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-    setIsFormValid(
-      name.trim() !== "" && emailPattern.test(email) && message.trim() !== ""
-    );
+    if(name && emailPattern.test(email)){
+      setIsFormValid(true)
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (isFormValid) {
-      console.log("Form submitted successfully!", formData);
-      navigate("/");
+      localStorage.setItem('items', JSON.stringify(formData));
+      navigate("/post");
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     validateForm();
   }, [formData]);
 
@@ -77,14 +77,15 @@ export const Contact = () => {
             }}
           />
         </div>
-        <Button
+        <CustomButton
           type="submit"
           color="primary"
           size="large"
           disabled={!isFormValid}
+          handleClick={handleSubmit}
         >
           Submit
-        </Button>
+        </CustomButton>
       </form>
     </Container>
   );

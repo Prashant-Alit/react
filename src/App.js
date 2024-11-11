@@ -1,4 +1,5 @@
 import { Navbar}  from "./components"
+import { ProtectedRouting } from "./routes/ProtectedRouting";
 import { Routing } from './routes/Routing';
 
 function App() {
@@ -7,7 +8,7 @@ function App() {
     <div className="App">
       <Navbar/>
       <Routing/>
-      
+      <ProtectedRouting/>
     </div>
   );
 }
