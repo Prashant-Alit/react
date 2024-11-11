@@ -5,7 +5,7 @@ import { fetchPosts, createPost } from "../../components/apiservices";
 import { Button } from "../../components/button/Button";
 import Pagination from "@mui/material/Pagination";
 import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
+import Grid from "@mui/material/Grid2";
 import { Container } from "@mui/material";
 
 export const Post = () => {
@@ -38,7 +38,7 @@ export const Post = () => {
     }
   };
 
-  const handlePageChange = (event, value) => {
+  const handlePageChange = ( value) => {
     setCurrentPage(value);
   };
 
@@ -104,13 +104,3 @@ export const Post = () => {
     </div>
   );
 };
-// [7:44 AM, 11/11/2024] -: Subject: Submission of Payslip and Bank Statement
-
-// Dear [HR's Name],
-
-// I hope this message finds you well. As per the requirement, I am attaching my recent payslip and bank statement for your review. Please let me know if you need any additional information or documents.
-
-// Thank you for your assistance.
-
-// Best regards,
-// Prashant
